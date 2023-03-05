@@ -1,0 +1,64 @@
+<!--
+ Created by Edis Hulpea March 2023.
+-->
+
+<template>
+    <div class="slds-card">
+        <div class="slds-box">
+            <div class="slds-card__header slds-grid">
+                <div class="slds-has-flexi-truncate slds-media ">
+                    <span class="slds-media__figure">
+                        <lightning-icon icon-name="utility:connected_apps" size="medium"></lightning-icon>
+                    </span>
+                    <span class="slds-media__body ">
+                        <span class="slds-card__header-title">Check tomorrows weather</span>
+                    </span>
+                </div>
+            </div>
+            <div class="slds-form" >
+                <div class="slds-form__row">
+                    <div class="slds-form-element slds-m-horizontal_small">
+                        <lightning-input
+                                label="Latitude"
+                                name="latitude"
+                                type="number"
+                                onchange={handleInputChange}
+                                value={formData.latitude}
+                        >
+                        </lightning-input>
+                    </div>
+                    <div class="slds-form-element slds-m-horizontal_small">
+                        <lightning-input
+                                label="Longitude"
+                                name="longitude"
+                                type="number"
+                                onchange={handleInputChange}
+                                value={formData.longitude}
+                        >
+                        </lightning-input>
+                    </div>
+                </div>
+
+                <button onclick={handleClick} class="slds-button slds-button_brand slds-m-vertical_medium">Check weather</button>
+            </div>
+            <template if:true={isFetched}>
+                <template if:true={tableData}>
+                    <c-table table-data={tableData} ></c-table>
+                </template>
+                <template if:false={tableData}>
+                   <p>Something went wrong with the weather request</p>
+                </template>
+            </template>
+            <template if:false={isFetched}>
+                <div class="slds-spinner_container">
+                    <div role="status" class="slds-spinner slds-spinner_medium slds-spinner_brand">
+                        <span class="slds-assistive-text">Loading</span>
+                        <div class="slds-spinner__dot-a"></div>
+                        <div class="slds-spinner__dot-b"></div>
+                    </div>
+                </div>
+            </template>
+
+        </div>
+    </div>
+</template>
