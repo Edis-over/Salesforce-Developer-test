@@ -19,12 +19,11 @@ export default class Table extends LightningElement {
     latitude;
     longitude;
 
-
     connectedCallback() {
-       this.formattedTableData =  this.formatData(this.tableData);
+       this.formattedTableData =  this.formatTable(this.tableData);
     }
 
-    formatData(tabledata){
+    formatTable(tabledata){
         const time = tabledata.time;
         const temperature =  tabledata.temperature;
         const windspeed = tabledata.windspeed;
@@ -50,6 +49,5 @@ export default class Table extends LightningElement {
         const hours = dateTime.getHours().toString().padStart(2, '0');
         const minutes = dateTime.getMinutes().toString().padStart(2, '0');
         return `${hours}:${minutes}`
-
     }
 }

@@ -21,8 +21,9 @@
                         <lightning-input
                                 label="Latitude"
                                 name="latitude"
+                                data-field="latitude"
                                 type="number"
-                                onchange={handleInputChange}
+                                onblur={handleBlur}
                                 value={formData.latitude}
                         >
                         </lightning-input>
@@ -31,15 +32,16 @@
                         <lightning-input
                                 label="Longitude"
                                 name="longitude"
+                                data-field="longitude"
                                 type="number"
-                                onchange={handleInputChange}
+                                onblur={handleBlur}
                                 value={formData.longitude}
                         >
                         </lightning-input>
                     </div>
                 </div>
 
-                <button onclick={handleClick} class="slds-button slds-button_brand slds-m-vertical_medium">Check weather</button>
+                <button onclick={handleClick} class="slds-button slds-button_brand slds-m-vertical_medium" disabled={disableButton}>Check weather</button>
             </div>
             <template if:true={isFetched}>
                 <template if:true={tableData}>

@@ -22,10 +22,8 @@ public with sharing class WeatherService {
 
     @AuraEnabled
     public static Response getWeatherForecast(Request request) {
-        System.debug('!!!equest' + request);
         Response response = new Response();
         errors = validateRequest(request);
-        System.debug('!!!errors' + errors);
         if (!errors.isEmpty()) {
             response.errors = errors;
             response.isSuccess = false;
@@ -62,12 +60,13 @@ public with sharing class WeatherService {
         //Make the HTTP request
         response = doCallout();
         updateAccount(request.recordId,response.data);
+
         if(errors.size() > 0){
             response.isSuccess = false;
             response.errors = errors;
             response.data = '';
         }
-        System.debug('2@@@@response' + response);
+
         return response;
     }
 
@@ -123,7 +122,6 @@ public with sharing class WeatherService {
 
     @Future
     private static void updateAccount( Id accId, String weatherForecast){
-        System.debug('weatherForecast'+weatherForecast);
         List<Account> accountsToUpdate = new List<Account>();
         Account acc = new Account();
         acc.Id = accId;

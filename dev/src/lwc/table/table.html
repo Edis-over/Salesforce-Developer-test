@@ -4,11 +4,9 @@
 
 <template>
     <p>The shown information if for {latitude} latitude  and  {longitude} longitude</p>
-    <div style="height: 250px;">
-        <lightning-datatable
-                key-field="id"
-                data={formattedTableData}
-                columns={columns}>
-        </lightning-datatable>
-    </div>
+    <lightning-datatable
+            key-field="id"
+            data={formattedTableData}
+            columns={columns}>
+    </lightning-datatable>
 </template>
